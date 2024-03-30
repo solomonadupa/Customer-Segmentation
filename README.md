@@ -36,7 +36,7 @@ df.derscibe()
 ```Pandas
 df.mode().dropna()
 ```
-##Cluster Fromation.
+## Cluster Fromation.
 1. I used the the Standardscaler to standardise my scales   
 ```from sklearn.preprocessing import StandardScaler
 scaler = StandardScaler()
@@ -50,15 +50,57 @@ inertia_list = []
 for k in range(1,11):
     inertia = KMeans(n_clusters=k , n_init=10).fit(X).inertia_
     inertia_list.append(inertia)
-    ```
+```
 ### Visualization of the Elbow plot
 
 
 
 3. I then formed clusters based on the recommended number of clusters, below is a visualization
- ### Clustter Visualization
+### Clustter Visualization
+
 
 
 ## Cluster Analysis
+1. Finding the population size of each cluster
+```
+customer_num = df_scaled.groupby('Cluster')['MntTotal'].count().reset_index()
+```
+### A bar plot of Number of customers per cluster
+
+
+
+
+
+2. Average income per cluster
+```
+df_clustered['Avg_income'] = df_clustered.groupby('Cluster')['Income'].mean()
+```
+### Visual representation of Average income per cluster
+
+
+
+
+
+3. Average Product Consumption per cluster
+```
+Avg_Consumption = df_clustered.groupby('Cluster')[['MntWines', 'MntFruits', 'MntMeatProducts', 'MntFishProducts', 'MntSweetProducts','MntGoldProds', 'MntTotal']].mean().reset_index()
+Avg_Consumption
+```
+### A bar plot showing Average amount of each product consumed by each Cluster
+
+
+
+
+## Recommendations
+**Cluster 0**; This cluster has the highest number of customers belonging to it, but the mean Income is second lowest. They have also been showed to spend the least on the different Products. More marketing targetted towards this cluster should be done and also they should be offered trade discounts to encourage them to buy more as the cluster has numbers and therefore the opportunity to give the business more sales.
+
+**Cluster 1**; Despite having the smallest population, the customers from this custer have the highestest purchasing power and also earn the seconf highest income on average. Clients from this have a minimum of Secondary education. With the desire to purchase and fairly high income. The business should focus on retaining the clients in this cluster through discounts, targetted marketing and running promotions.
+
+**Cluster 2**; Customers within this cluster have the second highest purchasing power however much the average income is the least. The mininimum level of Education is also 2. These clients are limited but their income but are a great group to target at the beginning/end of the month to maximise sales.
+
+**Cluster 3**; This cluster earns the highest income but their desire to purchase is just low. This could be due to failure of the business to sufficiently influence these customers. The business should therefore try to convert these clients into paying customers as they have a huge potential through offers, special discounts etc.
+
+
+
 
   
