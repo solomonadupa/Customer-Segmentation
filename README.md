@@ -51,45 +51,41 @@ for k in range(1,11):
     inertia = KMeans(n_clusters=k , n_init=10).fit(X).inertia_
     inertia_list.append(inertia)
 ```
-### Visualization of the Elbow plot
+**Visualization of the Elbow plot**
 
-
+![Elbow method](https://github.com/solomonadupa/Customer-Segmentation-Analysis/assets/160836596/13e8271a-1c0a-4873-b9ef-072af208ef90)
 
 3. I then formed clusters based on the recommended number of clusters, below is a visualization
-### Clustter Visualization
 
+**Clustter Visualization**
 
+![Customer segments](https://github.com/solomonadupa/Customer-Segmentation-Analysis/assets/160836596/d9fc778a-7764-482a-a410-47bbb393d97c)
 
 ## Cluster Analysis
 1. Finding the population size of each cluster
 ```
 customer_num = df_scaled.groupby('Cluster')['MntTotal'].count().reset_index()
 ```
-### A bar plot of Number of customers per cluster
+**A bar plot of Number of customers per cluster**
 
-
-
-
+![cluster sizes](https://github.com/solomonadupa/Customer-Segmentation-Analysis/assets/160836596/3b89b4ce-b1e2-46a0-bbb3-3603c1f94643)
 
 2. Average income per cluster
 ```
 df_clustered['Avg_income'] = df_clustered.groupby('Cluster')['Income'].mean()
 ```
-### Visual representation of Average income per cluster
+**Visual representation of Average income per cluster**
 
-
-
-
+![Average income](https://github.com/solomonadupa/Customer-Segmentation-Analysis/assets/160836596/fc60f97a-d71c-4d6f-aaf9-70814f370253)
 
 3. Average Product Consumption per cluster
 ```
 Avg_Consumption = df_clustered.groupby('Cluster')[['MntWines', 'MntFruits', 'MntMeatProducts', 'MntFishProducts', 'MntSweetProducts','MntGoldProds', 'MntTotal']].mean().reset_index()
 Avg_Consumption
 ```
-### A bar plot showing Average amount of each product consumed by each Cluster
+**A bar plot showing Average amount of each product consumed by each Cluster**
 
-
-
+![product preference](https://github.com/solomonadupa/Customer-Segmentation-Analysis/assets/160836596/82e99e7d-bb55-40a5-9c5e-03e6fc23331f)
 
 ## Recommendations
 **Cluster 0**; This cluster has the highest number of customers belonging to it, but the mean Income is second lowest. They have also been showed to spend the least on the different Products. More marketing targetted towards this cluster should be done and also they should be offered trade discounts to encourage them to buy more as the cluster has numbers and therefore the opportunity to give the business more sales.
